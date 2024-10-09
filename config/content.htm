@@ -36,7 +36,65 @@
 <p>上列 iframe 標註的 html 語法:</p>
 <pre class="brush:html;auto-links:false;toolbar:false" contenteditable="false">&lt;iframe width="600" height="400" src="https://nbviewer.org/urls/mde.tw/cp2024_hw/downloads/01_string_input_print.ipynb"&gt;&lt;/iframe&gt;</pre>
 <p>完成上述流程整理後, 請將 HW1 自評分數輸入 cp2024 自評表單中.</p>
-<h2>HW 1 Exam</h2>
+<p></p>
+<h1>HW 1-1</h1>
+<p>scite應用</p>
+<p>help_print.py應用</p>
+<pre class="brush:py;auto-links:false;toolbar:false" contenteditable="false">#單行註解
+#help(print)
+'''這個三引好所界定的區域
+被 Python 視為多行註解
+'''
+a = "一個字串"
+a = 24
+a = 24.5
+print(a)
+b = print(a, a, a, sep='*', end='*')
+print(b)</pre>
+<p><img alt="" height="434" src="/images/螢幕擷取畫面 2024-10-09 105812.png" width="456"/></p>
+<p></p>
+<p>help_range.py應用</p>
+<pre class="brush:py;auto-links:false;toolbar:false" contenteditable="false">for i in range(1, 8):
+    print(' ' * (7-i) + '*' * (2*i-1))
+    
+a = 15
+b = a*2+1
+for i in range(1, b, 2):
+    move = round((b-i)/2)-1
+    print(f' '*move, end='')
+    print('*'*i)
+    
+    n = 21
+
+for i in range(n):
+    print(' ' * (n - i - 1) + '* ' * (i + 1))</pre>
+<p><img alt="" height="529" src="/images/螢幕擷取畫面 2024-10-09 111136.png" width="473"/></p>
+<p></p>
+<p>triangle_star_2.py結論</p>
+<pre class="brush:py;auto-links:false;toolbar:false" contenteditable="false">a = 15
+b = a*2+1
+for i in range(1, b, 2):
+    move = round((b-i)/2)-1
+    print(f' '*move, end='')
+    print('*'*i)</pre>
+<p><img alt="" height="244" src="/images/螢幕擷取畫面 2024-10-09 111516.png" width="472"/></p>
+<p></p>
+<p>square.py其他練習</p>
+<pre class="brush:py;auto-links:false;toolbar:false" contenteditable="false">n = 5 
+for i in range(n):
+    print('* ' * n</pre>
+<p><img alt="" height="161" src="/images/螢幕擷取畫面 2024-10-09 111711.png" width="499"/></p>
+<p></p>
+<p>將上述分開存檔導入進cmd  (以<span>triangle_star_2.py為例</span>)</p>
+<p><img alt="" height="562" src="/images/螢幕擷取畫面 2024-10-09 112004.png" width="501"/></p>
+<p></p>
+<p>若不熟可以使用 chatgpt 作為輔助參考</p>
+<p><img alt="" height="497" src="/images/螢幕擷取畫面 2024-10-09 113143.png" width="501"/></p>
+<p></p>
+<p><a href="/downloads/heip_print.txt">heip_print.txt</a></p>
+<p><a href="/downloads/help_range.txt">help_range.txt</a></p>
+<p><a href="/downloads/triangle_star_2.txt">triangle_star_2.txt</a></p>
+<p><a href="/downloads/square.txt">square.txt</a></p><h2>HW 1 Exam</h2>
 <p>每六人為一組進行協同程式練習</p>
 <p>透過 Jupyterlab 協同網頁, 輪流指定各組編寫 Topic 1 相關的程式練習, 以及網頁內容 (localhost 與 Codespaces 環境)編輯.</p>
 <h1>HW 2</h1>
