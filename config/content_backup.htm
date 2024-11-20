@@ -222,7 +222,85 @@ sim.stopSimulation()
 <p>  9.如果在程式中使用了錯誤的運算符或關鍵字，會產生語法錯誤。</p>
 <p>題目三</p>
 <p></p>
-<p><iframe allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen="allowfullscreen" frameborder="0" height="315" referrerpolicy="strict-origin-when-cross-origin" src="https://www.youtube.com/embed/uQmFeI6lkTw?si=6NbJzSH8In5104Tz" title="YouTube video player" width="560"></iframe></p><h1>HW 2</h1>
+<p><iframe allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen="allowfullscreen" frameborder="0" height="315" referrerpolicy="strict-origin-when-cross-origin" src="https://www.youtube.com/embed/uQmFeI6lkTw?si=6NbJzSH8In5104Tz" title="YouTube video player" width="560"></iframe></p>
+<p></p>
+<h3>w11</h3>
+<p>1-1</p>
+<pre class="brush:py;auto-links:false;toolbar:false" contenteditable="false">import math
+
+# 設定圓心 (h, k) 和半徑 r
+h, k = 5, 5  # 圓心
+r = 4        # 半徑
+
+# 10x10 字元區域
+for y in range(10):
+    for x in range(10):
+        # 計算 (x, y) 到圓心 (h, k) 的距離
+        distance = math.sqrt((x - h) ** 2 + (y - k) ** 2)
+        
+        # 若距離接近半徑 r，則輸出 '*'
+        if abs(distance - r) &lt; 1:
+            print('*', end='')
+        else:
+            print(' ', end='')
+    
+    # 換行
+    print()</pre>
+<p><br/>1-2</p>
+<p></p>
+<pre class="brush:py;auto-links:false;toolbar:false" contenteditable="false">from browser import html
+from browser import document as doc
+import math
+
+# 利用 html 建立 canvas 超文件物件
+canvas = html.CANVAS(width=400, height=400)
+brython_div = doc["brython_div1"]
+brython_div &lt;= canvas
+
+# 每一格的 pixel 數
+gs = 20
+
+# gs * tc = canvas width and height
+
+ctx = canvas.getContext("2d")
+
+# 繪製矩形的函數
+def dRect(lux, luy, w, h, s=1, c='#ff0000'):
+    ctx.lineWidth = s
+    ctx.strokeStyle = c
+    ctx.beginPath()
+    ctx.rect(lux, luy, w, h)
+    ctx.stroke()
+
+# 繪製網格
+def grid(width, height, grid_pix):
+    for i in range(width):
+        for j in range(height):
+            dRect(i * grid_pix, j * grid_pix, grid_pix, grid_pix, 1, "lightgrey")
+
+# 塗色
+def fill(x, y, color):
+    ctx.fillStyle = color
+    ctx.fillRect(x * gs, y * gs, gs, gs)
+
+# 計算圓形內部區域
+def draw_filled_circle_grid(h, k, r, grid_size):
+    for x in range(10):  # 網格範圍為 10x10
+        for y in range(10):
+            # 計算每個方格的中心點 (x, y) 到圓心 (h, k) 的距離
+            distance = math.sqrt((x - h) ** 2 + (y - k) ** 2)
+            # 當距離小於或等於半徑 r 時，這個方格在圓形內部
+            if distance &lt;= r:  # 圓形內部
+                fill(x, y, "black")
+
+# 繪製 10x10 網格
+grid(10, 10, gs)
+
+# 繪製填滿的圓形，圓心 (5, 5) 半徑 3
+draw_filled_circle_grid(5, 5, 3, gs)</pre>
+<p></p>
+<p><iframe allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen="allowfullscreen" frameborder="0" height="315" referrerpolicy="strict-origin-when-cross-origin" src="https://www.youtube.com/embed/5KkbVB9XOG4?si=Ikv-ZJfgU1PdSy9U" title="YouTube video player" width="560"></iframe></p>
+<h1>HW 2</h1>
 <h4>主題: Python 的數列、判斷式與重複迴圈 (20%)<span style="background-color: #ffff99;"><br/></span></h4>
 <p style="padding-left: 30px;">Python 課程教材: <a href="https://www.learnpythonwithjupyter.com/">https://www.learnpythonwithjupyter.com/</a> - PART 2 and Part 3</p>
 <hr/>
