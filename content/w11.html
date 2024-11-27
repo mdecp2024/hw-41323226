@@ -228,7 +228,54 @@ grid(10, 10, gs)
 # 繪製填滿的圓形，圓心 (5, 5) 半徑 3
 draw_filled_circle_grid(5, 5, 3, gs)</pre>
 <p></p>
-<p><iframe allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen="allowfullscreen" frameborder="0" height="315" referrerpolicy="strict-origin-when-cross-origin" src="https://www.youtube.com/embed/5KkbVB9XOG4?si=Ikv-ZJfgU1PdSy9U" title="YouTube video player" width="560"></iframe></p><br />w10 << <a href='w10.html'>Previous</a> <a href='HW 2.html'>Next</a> >> HW 2</div>
+<p><iframe allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen="allowfullscreen" frameborder="0" height="315" referrerpolicy="strict-origin-when-cross-origin" src="https://www.youtube.com/embed/5KkbVB9XOG4?si=Ikv-ZJfgU1PdSy9U" title="YouTube video player" width="560"></iframe></p>
+<p></p>
+<p>雖小被點名</p>
+<p>連結:<a href="https://mdecp2024.github.io/hw-41323226/content/Brython.html?src=https://gist.githubusercontent.com/41323226/8b810b4869f345abcea147c642e02825/raw/9294152decdebe11e8408b167c22b2807cb63fad/%25E9%259B%2596.py">紅色格子</a></p>
+<p>中央紅色小格</p>
+<pre class="brush:py;auto-links:false;toolbar:false" contenteditable="false">from browser import html
+from browser import document as doc
+
+# 利用 html 建立 canvas 超文件物件
+canvas = html.CANVAS(width=400, height=400)
+brython_div = doc["brython_div1"]
+brython_div &lt;= canvas
+
+# 每一格的 pixel 數
+gs = 20
+
+# gs*tc = canvas width and height
+ctx = canvas.getContext("2d")
+
+def dRect(lux, luy, w, h, s=1, c='#ff0000'):
+    ctx.lineWidth = s
+    ctx.strokeStyle = c
+    ctx.beginPath()
+    ctx.rect(lux, luy, w, h)
+    ctx.stroke()
+
+def grid(width, height, grid_pix):
+    # x 方向共 width 格
+    # y 方向共 height 格
+    # grid_pix, 每一個的 pixel 點數
+    # 利用迴圈與座標增量繪圖
+    for i in range(width):
+        for j in range(height):
+            dRect(i * grid_pix, j * grid_pix, grid_pix, grid_pix, 1, "lightgrey")
+
+def fill(x, y, color):
+    ctx.fillStyle = color
+    ctx.fillRect(x - 1, y - 1, gs, gs)
+
+# 繪製 10x10 方格
+grid(10, 10, gs)
+
+# 填充中央的紅色方塊
+center_x = 5  # 10x10 的中央位置是第 5 列 (索引從 0 開始)
+center_y = 5  # 10x10 的中央位置是第 5 行 (索引從 0 開始)
+fill(center_x * gs, center_y * gs, "red")  # 填充紅色方塊
+</pre>
+<p><br/><br/></p><br />w10 << <a href='w10.html'>Previous</a> <a href='HW 2.html'>Next</a> >> HW 2</div>
         
     <!-- footer -->
       <div class="container">
