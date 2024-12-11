@@ -130,7 +130,7 @@ img.add_border {
                             <li><a href="./../blog/index.html">blog</a></li>
                         </ul>
                       </li>
-                     <li><a href='About.html'>About</a><li><a href='Attendance.html'>Attendance</a><li class='has-children'><a href='HW 1.html'>HW 1</a><ul class='dropdown'><li><a href='HW 1-1.html'>HW 1-1</a><li><a href='HW 1-2.html'>HW 1-2</a><li class='has-children'><a href='HW 1 Exam.html'>HW 1 Exam</a><ul class='dropdown'><li><a href='w7.html'>w7</a><li><a href='w10.html'>w10</a><li><a href='w11_hw.html'>w11_hw</a><li><a href='w12_hw.html'>w12_hw</a><li><a href='w13_hw.html'>w13_hw</a></li></li></ul></ul><li class='has-children'><a href='HW 2.html'>HW 2</a><ul class='dropdown'><li><a href='HW 2 Exam.html'>HW 2 Exam</a></li></ul><li class='has-children'><a href='HW 3.html'>HW 3</a><ul class='dropdown'><li><a href='HW 3 Exam.html'>HW 3 Exam</a></li></ul><li class='has-children'><a href='HW 4.html'>HW 4</a><ul class='dropdown'><li><a href='HW 4 Exam.html'>HW 4 Exam</a></li></ul><li><a href='Final Report.html'>Final Report</a><li><a href='Brython.html'>Brython</a></li>
+                     <li><a href='About.html'>About</a><li><a href='Attendance.html'>Attendance</a><li class='has-children'><a href='HW 1.html'>HW 1</a><ul class='dropdown'><li><a href='HW 1-1.html'>HW 1-1</a><li><a href='HW 1-2.html'>HW 1-2</a><li class='has-children'><a href='HW 1 Exam.html'>HW 1 Exam</a><ul class='dropdown'><li><a href='w7.html'>w7</a><li><a href='w10.html'>w10</a><li><a href='w11_hw.html'>w11_hw</a><li><a href='w12_hw.html'>w12_hw</a><li><a href='w13_hw.html'>w13_hw</a><li><a href='w14.html'>w14</a></li></li></ul></ul><li class='has-children'><a href='HW 2.html'>HW 2</a><ul class='dropdown'><li><a href='HW 2 Exam.html'>HW 2 Exam</a></li></ul><li class='has-children'><a href='HW 3.html'>HW 3</a><ul class='dropdown'><li><a href='HW 3 Exam.html'>HW 3 Exam</a></li></ul><li class='has-children'><a href='HW 4.html'>HW 4</a><ul class='dropdown'><li><a href='HW 4 Exam.html'>HW 4 Exam</a></li></ul><li><a href='Final Report.html'>Final Report</a><li><a href='Brython.html'>Brython</a></li>
                       </ul>
                 </nav>
               </div>
@@ -141,7 +141,7 @@ img.add_border {
           </div>
           
         </header>
-    <div id="tipue_search_content">w12_hw << <a href='w12_hw.html'>Previous</a> <a href='HW 2.html'>Next</a> >> HW 2<br /><h1>w13_hw</h1>
+    <div id="tipue_search_content">w12_hw << <a href='w12_hw.html'>Previous</a> <a href='w14.html'>Next</a> >> w14<br /><h1>w13_hw</h1>
 <div id="brython_div1"></div>
 <!-- 導入 brython 程式庫 -->
 <p>
@@ -245,7 +245,84 @@ ctx.beginPath()
 ctx.arc(200, 200, 100, 0, 2 * 3.14159)  # 圓心在(200, 200)，半徑為100
 ctx.stroke()
 </script>
-</p><br />w12_hw << <a href='w12_hw.html'>Previous</a> <a href='HW 2.html'>Next</a> >> HW 2</div>
+</p>
+<p><a href="https://mdecp2024.github.io/hw-41323226/content/Brython.html?src=https://gist.githubusercontent.com/41323226/2a95f919ef2779d7284f087f1da0fa9c/raw/f6f5928bbeb62bdb10f9011adec2988d7ecce187/%25E5%25A1%2597%25E8%2589%25B2.py">方格塗色</a></p>
+<p></p>
+<div id="brython_div1"></div>
+<!-- 導入 brython 程式庫 -->
+<p>
+<script src="./../cmsimde/static/brython.js"></script>
+<script src="./../cmsimde/static/brython_stdlib.js"></script>
+</p>
+<!-- 啟動 Brython -->
+<p>
+<script>
+window.onload=function(){
+brython({debug:1, pythonpath:['./../cmsimde/static/','./../downloads/py/']});
+}
+</script>
+<script type="text/python3">
+from browser import html
+from browser import document as doc
+import math
+ 
+# 利用 html 建立 canvas 超文件物件
+canvas = html.CANVAS(width=600, height=600)
+brython_div = doc["brython_div1"]
+brython_div <= canvas
+ 
+ctx = canvas.getContext("2d")
+ 
+grid_size = 10
+ctx.lineWidth = 1
+ 
+# 可調整的圓參數
+circle1 = {"cx": 200, "cy": 200, "r": 141.4}  # 圓 1 的圓心 (200, 200)，半徑 141.4
+circle2 = {"cx": 300, "cy": 300, "r": 141.4}  # 圓 2 的圓心 (300, 300)，半徑 141.4
+ 
+def point_in_circle(x, y, circle):
+    cx, cy, r = circle["cx"], circle["cy"], circle["r"]
+    return (x - cx) ** 2 + (y - cy) ** 2 < r ** 2
+ 
+# 根據點所在的區域來返回顏色
+def get_region_color(x, y):
+    in_circle1 = point_in_circle(x, y, circle1)
+    in_circle2 = point_in_circle(x, y, circle2)
+ 
+    if in_circle1 and in_circle2:
+        return "green"  # 區域 3：同時在圓 1 和圓 2 內
+    elif in_circle1:
+        return "blue"   # 區域 1：僅在圓 1 內
+    elif in_circle2:
+        return "red"    # 區域 2：僅在圓 2 內
+    else:
+        return None      # 區域 4：不在任何圓內
+ 
+# 扫描每 10 像素的格點並上色
+def scan_and_draw():
+    for x in range(0, 600, grid_size):  # 遍歷畫布範圍，從左到右
+        for y in range(0, 600, grid_size):  # 從上到下
+            color = get_region_color(x, y)  # 獲取當前點的區域顏色
+            if color:  # 只有當顏色不為 None（即點在某個圓內）時才繪製
+                # 繪製點
+                ctx.fillStyle = color
+                ctx.beginPath()
+                ctx.arc(x, y, grid_size // 2, 0, 2 * math.pi)  # 點的半徑設為 grid_size 的一半
+                ctx.fill()
+ 
+# 繪製圓的外框
+ctx.strokeStyle = 'black'
+ctx.beginPath()
+ctx.arc(circle1["cx"], circle1["cy"], circle1["r"], 0, 2 * math.pi)
+ctx.stroke()
+ctx.beginPath()
+ctx.arc(circle2["cx"], circle2["cy"], circle2["r"], 0, 2 * math.pi)
+ctx.stroke()
+ 
+# 開始掃描並繪製顏色
+scan_and_draw()
+</script>
+</p><br />w12_hw << <a href='w12_hw.html'>Previous</a> <a href='w14.html'>Next</a> >> w14</div>
         
     <!-- footer -->
       <div class="container">
